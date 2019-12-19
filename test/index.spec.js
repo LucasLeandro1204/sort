@@ -1,4 +1,4 @@
-const { sort } = require('../src');
+const sort = require('../src/sort');
 const { RuleTester } = require('eslint');
 
 const tests = {
