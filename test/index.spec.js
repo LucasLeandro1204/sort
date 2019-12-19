@@ -1,13 +1,38 @@
-const { RuleTester } = require('eslint');
 const { sort } = require('../src');
+const { RuleTester } = require('eslint');
 
 const tests = {
-  valid: [
-    //
+  invalid: [
+    {
+      code: `
+        import Bar from 'bar';
+        import RandomModule from 'random-module';
+        import {
+          Quox,
+          Foo,
+          Baz,
+        } from 'another-random-module';
+        import { Foo, Bar } from 'quox';
+        import Foo from 'foo';
+        import { Bar, Foo } from 'abcd';
+      `,
+      errors: 1,
+    },
   ],
 
-  invalid: [
-    //
+  valid: [
+    `
+      import Bar from 'bar';
+      import Foo from 'foo';
+      import {
+        Baz,
+        Foo,
+        Quox,
+      } from 'another-random-module';
+      import { Bar, Foo } from 'abcd';
+      import { Bar, Foo } from 'quox';
+      import RandomModule from 'random-module';
+    `,
   ],
 };
 
