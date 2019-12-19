@@ -5,7 +5,7 @@ const tests = {
   valid: [
     //
   ],
-  
+
   invalid: [
     //
   ],
@@ -13,7 +13,7 @@ const tests = {
 
 const tester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 2016,
+    ecmaVersion: 6,
     sourceType: 'module',
   },
 });
