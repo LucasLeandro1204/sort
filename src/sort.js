@@ -9,22 +9,30 @@ const meta = {
 /**
  * Group imports declaration.
  */
-const groupImports = body => body
-  .reduce((grouped, node) => {
-    if (node.type === 'ImportDeclaration') {
-      grouped[0].push(node);
-    } else if (grouped[0].length > 0) {
-      grouped.unshift([
-        //
-      ]);
-    }
+const groupImports = (body) => {
+  const grouped = body
+    .reduce((grouped, node) => {
+      const index = grouped.length - 1;
 
-    return grouped;
-  }, [
-    [
-      //
-    ],
-  ]);
+      if (node.type === 'ImportDeclaration') {
+        grouped[index].push(node);
+      } else if (grouped[index].length > 0) {
+        grouped.push([
+          //
+        ]);
+      }
+
+      return grouped;
+    }, [
+      [],
+    ]);
+
+  if (grouped[grouped.length - 1].length === 0) {
+    grouped.pop();
+  }
+
+  return grouped;
+};
 
 /**
  * Eslint create handler.
