@@ -5,16 +5,16 @@ const tests = {
   invalid: [
     {
       code: `
-        import First from 'first';
         import Second from 'second';
+        import { Ghi, Jkl } from 'efgh';
+        import First from 'first';
         import {
-          Baz,
           Foo,
+          Baz,
           Quox,
         } from 'another-random-module';
-        import { Abc, Def } from 'abcd';
-        import { Ghi, Jkl } from 'efgh';
         import RandomModule from 'random-module';
+        import { Def, Abc } from 'abcd';
       `,
       errors: 1,
     },
