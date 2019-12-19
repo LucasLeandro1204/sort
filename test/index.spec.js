@@ -5,16 +5,16 @@ const tests = {
   invalid: [
     {
       code: `
-        import Bar from 'bar';
-        import RandomModule from 'random-module';
+        import First from 'first';
+        import Second from 'second';
         import {
-          Quox,
-          Foo,
           Baz,
+          Foo,
+          Quox,
         } from 'another-random-module';
-        import { Foo, Bar } from 'quox';
-        import Foo from 'foo';
-        import { Bar, Foo } from 'abcd';
+        import { Abc, Def } from 'abcd';
+        import { Ghi, Jkl } from 'efgh';
+        import RandomModule from 'random-module';
       `,
       errors: 1,
     },
@@ -22,15 +22,15 @@ const tests = {
 
   valid: [
     `
-      import Bar from 'bar';
-      import Foo from 'foo';
+      import First from 'first';
+      import Second from 'second';
       import {
         Baz,
         Foo,
         Quox,
       } from 'another-random-module';
-      import { Bar, Foo } from 'abcd';
-      import { Bar, Foo } from 'quox';
+      import { Abc, Def } from 'abcd';
+      import { Ghi, Jkl } from 'efgh';
       import RandomModule from 'random-module';
     `,
   ],
