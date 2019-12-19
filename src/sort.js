@@ -1,3 +1,11 @@
+/**
+ * Pipe helper.
+ */
+const pipe = (...fns) => arg => fns.reduce((res, next) => next(res), arg);
+
+/**
+ * Rule meta info.
+ */
 const meta = {
   type: 'layout',
 
@@ -9,7 +17,9 @@ const meta = {
 /**
  * Group imports declaration.
  */
-const groupImports = (body) => {
+const groupImports = ({
+  body,
+}) => {
   const grouped = body
     .reduce((grouped, node) => {
       const index = grouped.length - 1;
@@ -37,18 +47,13 @@ const groupImports = (body) => {
 /**
  * Eslint create handler.
  */
-const create = (ctx) => {
-
-  return {
-    Program ({
-      body,
-    }) {
-      const imports = groupImports(body);
-
-      console.dir(imports);
-    },
-  };
-};
+const create = (ctx) => ({
+  Program: pipe(
+    groupImports,
+    formatImports(ctx),
+    reportInvalid,
+  ),
+});
 
 module.exports = {
   meta,
