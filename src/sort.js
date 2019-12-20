@@ -1,7 +1,4 @@
-/**
- * Pipe helper.
- */
-const pipe = (...fns) => arg => fns.reduce((res, next) => next(res), arg);
+const { pipe } = require('./helpers');
 
 /**
  * Rule meta info.
